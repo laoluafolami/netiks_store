@@ -12,7 +12,8 @@ Created the local environment variables file required by the Docker containers:
 ### Step 2: Building and Starting the Containers.
 Launched the entire microservices stack in detached (background) mode. This command built the custom Docker images for the Next.js frontend and Python services, and pulled the official images for the database and cache:
 
-![alt text](image-1.png)
+<img width="349" height="85" alt="image" src="https://github.com/user-attachments/assets/638292c0-0279-4f41-ba1d-17a5ed3a97a5" />
+
 
 ### Step 3: Seeding the Database.
 To populate the empty database with demo vendors, categories, and products, the seeding script was executed. (Note: An environment variable DOCKER_BIN=docker was prepended to resolve a hardcoded macOS file path in the original script, adapting it for my Linux/WSL environment).
