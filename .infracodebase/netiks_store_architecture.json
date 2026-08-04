@@ -1,0 +1,273 @@
+{
+  "name": "Netiks Store — Multi-Vendor E-Commerce Microservices Architecture",
+  "nodes": [
+    {
+      "id": "client",
+      "label": "Client / Browser",
+      "subtitle": "end user",
+      "icon": "/icons/onprem/client/user.png",
+      "type": "resource",
+      "x": 430,
+      "y": -130
+    },
+    {
+      "id": "host_boundary",
+      "label": "Host Machine (localhost)",
+      "subtitle": "ports :3000 and :8000 exposed to host",
+      "icon": "/icons/onprem/container/docker.png",
+      "type": "container",
+      "x": 100,
+      "y": 200,
+      "width": 780,
+      "height": 330,
+      "borderStyle": "dashed"
+    },
+    {
+      "id": "web_host",
+      "label": "Next.js Frontend",
+      "subtitle": "web  ·  port 3000:3000",
+      "icon": "/icons/programming/framework/nextjs.png",
+      "type": "resource",
+      "x": 90,
+      "y": 90,
+      "parentId": "host_boundary"
+    },
+    {
+      "id": "gateway_host",
+      "label": "API Gateway",
+      "subtitle": "gateway  ·  port 8000:8000",
+      "icon": "/icons/programming/framework/fastapi.png",
+      "type": "resource",
+      "x": 570,
+      "y": 90,
+      "parentId": "host_boundary"
+    },
+    {
+      "id": "docker_network",
+      "label": "Docker Internal Network — netiks_network (bridge)  |  container DNS resolution only — no host port exposure for internal services",
+      "subtitle": "docker compose up",
+      "icon": "/icons/onprem/container/docker.png",
+      "type": "container",
+      "x": 0,
+      "y": 630,
+      "width": 1140,
+      "height": 1530,
+      "borderStyle": "solid"
+    },
+    {
+      "id": "web",
+      "label": "Web (Next.js)",
+      "x": 510,
+      "y": 90,
+      "subtitle": "apps/web  ·  :3000",
+      "icon": "/icons/programming/framework/nextjs.png",
+      "type": "resource",
+      "parentId": "docker_network"
+    },
+    {
+      "id": "gateway",
+      "label": "API Gateway (FastAPI)",
+      "x": 510,
+      "y": 340,
+      "subtitle": "apps/gateway  ·  :8000  ·  routes: /api/auth/* /api/catalog/* /api/stores/* /api/uploads/* /health",
+      "icon": "/icons/programming/framework/fastapi.png",
+      "type": "resource",
+      "parentId": "docker_network"
+    },
+    {
+      "id": "identity",
+      "label": "Identity Service",
+      "x": 90,
+      "y": 590,
+      "subtitle": "FastAPI  ·  auth & users  ·  internal",
+      "icon": "/icons/aws/general/user.png",
+      "type": "resource",
+      "parentId": "docker_network"
+    },
+    {
+      "id": "catalog",
+      "label": "Catalog Service",
+      "x": 370,
+      "y": 590,
+      "subtitle": "FastAPI  ·  products  ·  internal",
+      "icon": "/icons/azure/storage/data-catalog.png",
+      "type": "resource",
+      "parentId": "docker_network"
+    },
+    {
+      "id": "vendor",
+      "label": "Vendor Service",
+      "x": 650,
+      "y": 590,
+      "subtitle": "FastAPI  ·  stores  ·  internal",
+      "icon": "/icons/programming/flowchart/stored-data.png",
+      "type": "resource",
+      "parentId": "docker_network"
+    },
+    {
+      "id": "uploads",
+      "label": "Uploads Handler",
+      "x": 930,
+      "y": 590,
+      "subtitle": "FastAPI  ·  images  ·  internal",
+      "icon": "/icons/azure/iot/file-upload.png",
+      "type": "resource",
+      "parentId": "docker_network"
+    },
+    {
+      "id": "postgres",
+      "label": "PostgreSQL",
+      "x": 90,
+      "y": 940,
+      "subtitle": ":5432  ·  users, products, vendors",
+      "icon": "/icons/onprem/database/postgresql.png",
+      "type": "resource",
+      "parentId": "docker_network"
+    },
+    {
+      "id": "redis",
+      "label": "Redis",
+      "x": 370,
+      "y": 940,
+      "subtitle": ":6379  ·  sessions & product cache",
+      "icon": "/icons/onprem/inmemory/redis.png",
+      "type": "resource",
+      "parentId": "docker_network"
+    },
+    {
+      "id": "dbseed",
+      "label": "DB Seed (init)",
+      "x": 930,
+      "y": 940,
+      "subtitle": "runs once  ·  seeds demo data  ·  exits",
+      "icon": "/icons/programming/flowchart/database.png",
+      "type": "resource",
+      "parentId": "docker_network"
+    },
+    {
+      "id": "pg_volume",
+      "label": "Persistent Volume",
+      "x": 90,
+      "y": 1290,
+      "subtitle": "postgres_data  ·  bind mount",
+      "icon": "/icons/digitalocean/storage/volume.png",
+      "type": "resource",
+      "parentId": "docker_network"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_client_web_host",
+      "source": "client",
+      "target": "web_host",
+      "label": "HTTP :3000",
+      "style": "solid"
+    },
+    {
+      "id": "e_client_gw_host",
+      "source": "client",
+      "target": "gateway_host",
+      "label": "HTTP :8000",
+      "style": "solid"
+    },
+    {
+      "id": "e_web_host_web",
+      "source": "web_host",
+      "target": "web",
+      "label": "port-forward :3000",
+      "style": "dashed"
+    },
+    {
+      "id": "e_gw_host_gw",
+      "source": "gateway_host",
+      "target": "gateway",
+      "label": "port-forward :8000",
+      "style": "dashed"
+    },
+    {
+      "id": "e_web_gateway",
+      "source": "web",
+      "target": "gateway",
+      "label": "HTTP :8000"
+    },
+    {
+      "id": "e_gw_identity",
+      "source": "gateway",
+      "target": "identity",
+      "label": "HTTP /api/auth/*"
+    },
+    {
+      "id": "e_gw_catalog",
+      "source": "gateway",
+      "target": "catalog",
+      "label": "HTTP /api/catalog/*"
+    },
+    {
+      "id": "e_gw_vendor",
+      "source": "gateway",
+      "target": "vendor",
+      "label": "HTTP /api/stores/*"
+    },
+    {
+      "id": "e_gw_uploads",
+      "source": "gateway",
+      "target": "uploads",
+      "label": "HTTP /api/uploads/*"
+    },
+    {
+      "id": "e_identity_pg",
+      "source": "identity",
+      "target": "postgres",
+      "label": "TCP :5432"
+    },
+    {
+      "id": "e_catalog_pg",
+      "source": "catalog",
+      "target": "postgres",
+      "label": "TCP :5432"
+    },
+    {
+      "id": "e_vendor_pg",
+      "source": "vendor",
+      "target": "postgres",
+      "label": "TCP :5432"
+    },
+    {
+      "id": "e_identity_redis",
+      "source": "identity",
+      "target": "redis",
+      "label": "TCP :6379 (sessions)"
+    },
+    {
+      "id": "e_catalog_redis",
+      "source": "catalog",
+      "target": "redis",
+      "label": "TCP :6379 (cache)"
+    },
+    {
+      "id": "e_dbseed_pg",
+      "source": "dbseed",
+      "target": "postgres",
+      "label": "TCP :5432 (seed)"
+    },
+    {
+      "id": "e_pg_volume",
+      "source": "postgres",
+      "target": "pg_volume",
+      "label": "volume mount",
+      "style": "dashed"
+    }
+  ],
+  "legend": {
+    "edges": [
+      {
+        "label": "HTTP Request (REST)",
+        "style": "solid"
+      },
+      {
+        "label": "Port Forward / Volume Mount",
+        "style": "dashed"
+      }
+    ]
+  }
+}
