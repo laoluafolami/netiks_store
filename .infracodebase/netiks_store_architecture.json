@@ -4,11 +4,11 @@
     {
       "id": "client",
       "label": "Client / Browser",
-      "subtitle": "end user",
-      "icon": "/icons/onprem/client/user.png",
-      "type": "resource",
       "x": 430,
-      "y": -130
+      "y": -130,
+      "subtitle": "end user",
+      "icon": "/icons/ibm/user/browser.png",
+      "type": "resource"
     },
     {
       "id": "host_boundary",
@@ -57,101 +57,101 @@
     {
       "id": "web",
       "label": "Web (Next.js)",
-      "x": 510,
-      "y": 90,
       "subtitle": "apps/web  ·  :3000",
       "icon": "/icons/programming/framework/nextjs.png",
       "type": "resource",
+      "x": 510,
+      "y": 90,
       "parentId": "docker_network"
     },
     {
       "id": "gateway",
       "label": "API Gateway (FastAPI)",
-      "x": 510,
-      "y": 340,
       "subtitle": "apps/gateway  ·  :8000  ·  routes: /api/auth/* /api/catalog/* /api/stores/* /api/uploads/* /health",
       "icon": "/icons/programming/framework/fastapi.png",
       "type": "resource",
+      "x": 510,
+      "y": 340,
       "parentId": "docker_network"
     },
     {
       "id": "identity",
       "label": "Identity Service",
-      "x": 90,
-      "y": 590,
       "subtitle": "FastAPI  ·  auth & users  ·  internal",
       "icon": "/icons/aws/general/user.png",
       "type": "resource",
+      "x": 90,
+      "y": 590,
       "parentId": "docker_network"
     },
     {
       "id": "catalog",
       "label": "Catalog Service",
-      "x": 370,
-      "y": 590,
       "subtitle": "FastAPI  ·  products  ·  internal",
       "icon": "/icons/azure/storage/data-catalog.png",
       "type": "resource",
+      "x": 370,
+      "y": 590,
       "parentId": "docker_network"
     },
     {
       "id": "vendor",
       "label": "Vendor Service",
-      "x": 650,
-      "y": 590,
       "subtitle": "FastAPI  ·  stores  ·  internal",
       "icon": "/icons/programming/flowchart/stored-data.png",
       "type": "resource",
+      "x": 650,
+      "y": 590,
       "parentId": "docker_network"
     },
     {
       "id": "uploads",
       "label": "Uploads Handler",
-      "x": 930,
-      "y": 590,
       "subtitle": "FastAPI  ·  images  ·  internal",
       "icon": "/icons/azure/iot/file-upload.png",
       "type": "resource",
+      "x": 930,
+      "y": 590,
       "parentId": "docker_network"
     },
     {
       "id": "postgres",
       "label": "PostgreSQL",
-      "x": 90,
-      "y": 940,
       "subtitle": ":5432  ·  users, products, vendors",
       "icon": "/icons/onprem/database/postgresql.png",
       "type": "resource",
+      "x": 90,
+      "y": 940,
       "parentId": "docker_network"
     },
     {
       "id": "redis",
       "label": "Redis",
-      "x": 370,
-      "y": 940,
       "subtitle": ":6379  ·  sessions & product cache",
       "icon": "/icons/onprem/inmemory/redis.png",
       "type": "resource",
+      "x": 370,
+      "y": 940,
       "parentId": "docker_network"
     },
     {
       "id": "dbseed",
       "label": "DB Seed (init)",
-      "x": 930,
-      "y": 940,
       "subtitle": "runs once  ·  seeds demo data  ·  exits",
       "icon": "/icons/programming/flowchart/database.png",
       "type": "resource",
+      "x": 930,
+      "y": 940,
       "parentId": "docker_network"
     },
     {
       "id": "pg_volume",
       "label": "Persistent Volume",
-      "x": 90,
-      "y": 1290,
       "subtitle": "postgres_data  ·  bind mount",
       "icon": "/icons/digitalocean/storage/volume.png",
       "type": "resource",
+      "x": 90,
+      "y": 1290,
       "parentId": "docker_network"
     }
   ],
