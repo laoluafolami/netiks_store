@@ -7,40 +7,8 @@
       "subtitle": "end user",
       "icon": "https://fd-infracodebase-v2-static-prd-hvdmeqbraxfjhdb9.z01.azurefd.net/public/icons/ibm/user/browser.png",
       "type": "resource",
-      "x": 430,
-      "y": -130
-    },
-    {
-      "id": "host_boundary",
-      "label": "Host Machine (localhost)",
-      "subtitle": "ports :3000 and :8000 exposed to host",
-      "icon": "https://fd-infracodebase-v2-static-prd-hvdmeqbraxfjhdb9.z01.azurefd.net/public/icons/onprem/container/docker.png",
-      "type": "container",
-      "x": 100,
-      "y": 200,
-      "width": 780,
-      "height": 330,
-      "borderStyle": "dashed"
-    },
-    {
-      "id": "web_host",
-      "label": "Next.js Frontend",
-      "subtitle": "web  ·  port 3000:3000",
-      "icon": "https://fd-infracodebase-v2-static-prd-hvdmeqbraxfjhdb9.z01.azurefd.net/public/icons/programming/framework/nextjs.png",
-      "type": "resource",
-      "x": 90,
-      "y": 90,
-      "parentId": "host_boundary"
-    },
-    {
-      "id": "gateway_host",
-      "label": "API Gateway",
-      "subtitle": "gateway  ·  port 8000:8000",
-      "icon": "https://fd-infracodebase-v2-static-prd-hvdmeqbraxfjhdb9.z01.azurefd.net/public/icons/programming/framework/fastapi.png",
-      "type": "resource",
-      "x": 570,
-      "y": 90,
-      "parentId": "host_boundary"
+      "x": 547,
+      "y": -200
     },
     {
       "id": "docker_network",
@@ -49,8 +17,8 @@
       "icon": "https://fd-infracodebase-v2-static-prd-hvdmeqbraxfjhdb9.z01.azurefd.net/public/icons/onprem/container/docker.png",
       "type": "container",
       "x": 37,
-      "y": 96,
-      "width": 1140,
+      "y": 400,
+      "width": 1020,
       "height": 1530,
       "borderStyle": "solid"
     },
@@ -60,7 +28,7 @@
       "subtitle": "apps/web  ·  :3000",
       "icon": "https://fd-infracodebase-v2-static-prd-hvdmeqbraxfjhdb9.z01.azurefd.net/public/icons/programming/framework/nextjs.png",
       "type": "resource",
-      "x": 510,
+      "x": 491,
       "y": 90,
       "parentId": "docker_network"
     },
@@ -70,18 +38,18 @@
       "subtitle": "apps/gateway  ·  :8000  ·  routes: /api/auth/* /api/catalog/* /api/stores/* /api/uploads/* /health",
       "icon": "https://fd-infracodebase-v2-static-prd-hvdmeqbraxfjhdb9.z01.azurefd.net/public/icons/programming/framework/fastapi.png",
       "type": "resource",
-      "x": 510,
+      "x": 491,
       "y": 340,
       "parentId": "docker_network"
     },
     {
       "id": "identity",
       "label": "Identity Service",
-      "x": 90,
-      "y": 590,
       "subtitle": "FastAPI  ·  auth & users  ·  internal",
       "icon": "https://fd-infracodebase-v2-static-prd-hvdmeqbraxfjhdb9.z01.azurefd.net/public/icons/programming/framework/fastapi.png",
       "type": "resource",
+      "x": 90,
+      "y": 590,
       "parentId": "docker_network"
     },
     {
@@ -90,7 +58,7 @@
       "subtitle": "FastAPI  ·  products  ·  internal",
       "icon": "https://fd-infracodebase-v2-static-prd-hvdmeqbraxfjhdb9.z01.azurefd.net/public/icons/azure/storage/data-catalog.png",
       "type": "resource",
-      "x": 370,
+      "x": 310,
       "y": 590,
       "parentId": "docker_network"
     },
@@ -100,7 +68,7 @@
       "subtitle": "FastAPI  ·  stores  ·  internal",
       "icon": "https://fd-infracodebase-v2-static-prd-hvdmeqbraxfjhdb9.z01.azurefd.net/public/icons/programming/flowchart/stored-data.png",
       "type": "resource",
-      "x": 650,
+      "x": 590,
       "y": 590,
       "parentId": "docker_network"
     },
@@ -110,7 +78,7 @@
       "subtitle": "FastAPI  ·  images  ·  internal",
       "icon": "https://fd-infracodebase-v2-static-prd-hvdmeqbraxfjhdb9.z01.azurefd.net/public/icons/azure/iot/file-upload.png",
       "type": "resource",
-      "x": 930,
+      "x": 810,
       "y": 590,
       "parentId": "docker_network"
     },
@@ -130,7 +98,7 @@
       "subtitle": ":6379  ·  sessions & product cache",
       "icon": "https://fd-infracodebase-v2-static-prd-hvdmeqbraxfjhdb9.z01.azurefd.net/public/icons/onprem/inmemory/redis.png",
       "type": "resource",
-      "x": 370,
+      "x": 310,
       "y": 940,
       "parentId": "docker_network"
     },
@@ -140,7 +108,7 @@
       "subtitle": "runs once  ·  seeds demo data  ·  exits",
       "icon": "https://fd-infracodebase-v2-static-prd-hvdmeqbraxfjhdb9.z01.azurefd.net/public/icons/programming/flowchart/database.png",
       "type": "resource",
-      "x": 930,
+      "x": 810,
       "y": 940,
       "parentId": "docker_network"
     },
@@ -153,37 +121,17 @@
       "x": 90,
       "y": 1290,
       "parentId": "docker_network"
+    },
+    {
+      "id": "nginx",
+      "label": "Nginx",
+      "x": 528,
+      "y": 212,
+      "subtitle": "Reverse Proxy (host)",
+      "icon": "https://fd-infracodebase-v2-static-prd-hvdmeqbraxfjhdb9.z01.azurefd.net/public/icons/onprem/network/nginx.png"
     }
   ],
   "edges": [
-    {
-      "id": "e_client_web_host",
-      "source": "client",
-      "target": "web_host",
-      "label": "HTTP :3000",
-      "style": "solid"
-    },
-    {
-      "id": "e_client_gw_host",
-      "source": "client",
-      "target": "gateway_host",
-      "label": "HTTP :8000",
-      "style": "solid"
-    },
-    {
-      "id": "e_web_host_web",
-      "source": "web_host",
-      "target": "web",
-      "label": "port-forward :3000",
-      "style": "dashed"
-    },
-    {
-      "id": "e_gw_host_gw",
-      "source": "gateway_host",
-      "target": "gateway",
-      "label": "port-forward :8000",
-      "style": "dashed"
-    },
     {
       "id": "e_web_gateway",
       "source": "web",
@@ -256,6 +204,24 @@
       "target": "pg_volume",
       "label": "volume mount",
       "style": "dashed"
+    },
+    {
+      "id": "e_client_nginx",
+      "source": "client",
+      "target": "nginx",
+      "label": "HTTPS :443 / HTTP :80"
+    },
+    {
+      "id": "e_nginx_web",
+      "source": "nginx",
+      "target": "web",
+      "label": "127.0.0.1:3000 (loopback)"
+    },
+    {
+      "id": "e_nginx_gw",
+      "source": "nginx",
+      "target": "gateway",
+      "label": "127.0.0.1:8000 (loopback)"
     }
   ],
   "legend": {
