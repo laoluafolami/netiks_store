@@ -1,4 +1,3 @@
-cat > docker-compose.prod.yml << 'EOF'
 # Production override for docker-compose.yml
 # Use: docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
@@ -25,4 +24,3 @@ services:
 
   admin-service:
     image: netiksstoreregistry.azurecr.io/netiks-store/admin-service:v1.0.0
-EOF
