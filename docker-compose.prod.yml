@@ -1,3 +1,4 @@
+cat > docker-compose.prod.yml << 'EOF'
 # Production override for docker-compose.yml
 # Use: docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
@@ -5,7 +6,7 @@ version: '3.8'
 
 services:
   web:
-    image: netiksstoreregistry.azurecr.io/netiks-store/web:v1.0.1
+    image: netiksstoreregistry.azurecr.io/netiks-store/web:v1.0.0
 
   gateway:
     image: netiksstoreregistry.azurecr.io/netiks-store/gateway:v1.0.0

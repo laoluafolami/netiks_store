@@ -14,3 +14,4 @@ COPY packages/shared-types /app/packages/shared-types
 WORKDIR /app/apps/web
 
 CMD ["npm", "run", "dev"]
+# Updated September 1, 2024 - v1.0.1
